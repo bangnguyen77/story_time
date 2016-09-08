@@ -12,7 +12,12 @@
   <ul>
     <% @story.sentences.each do |sentence| %>
       <li>
-        <%= link_to sentence.text, edit_story_sentence_path(sentence) %> 
+        <%= link_to sentence.text, story_sentence_path(sentence) %>  |
+        <%= sentence.author %> |
+        <%= link_to "Edit", edit_story_sentence_path(@story, sentence) %> |
+        <%= link_to "Delete", story_sentence_path(@story, sentence),
+                                         :data => {:confirm => "Are you sure?",
+                                                        :method => "delete"} %>
       </li>
     <% end %>
   </ul>

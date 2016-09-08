@@ -2,7 +2,7 @@ class SentencesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-    @sentence = Sentence.find(params[:id])
+    @sentence = Sentence.find(params[:story_id])
   end
 
   def new
@@ -23,22 +23,26 @@ class SentencesController < ApplicationController
   end
 
   def edit
-    # @story = Story.find(params[:story_id])
-    # @sentence = @story.sentences.find(params[:id])
-
     @sentence = Sentence.find(params[:id])
     @story = Story.find(@sentence.story_id)
   end
 
   def update
-    @sentence =Sentence.find(params[:id])
+    @sentence = Sentence.find(params[:id])
     if @sentence.update(sentence_params)
       flash[:notice] = "Update saved successfully!"
-      redirect_to story_sentence_path
+      redirect_to story_path(@sentence.story)
     else
       flash[:alert] = "Update not saved. Try again!"
       render :edit
     end
+  end
+
+  def destroy
+    @sentence = Sentence.find(params[:id])
+    @sentence.destroy
+    flash[:notice] = "Sentence was deleted successfully!"
+    redirect_to stories_path
   end
 
   private
