@@ -34,6 +34,7 @@ class SentencesController < ApplicationController
       redirect_to story_path(@sentence.story)
     else
       flash[:alert] = "Update not saved. Try again!"
+      @story = Story.find(@sentence.story_id)
       render :edit
     end
   end
