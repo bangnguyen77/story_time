@@ -5,4 +5,20 @@
 <p><%= link_to "Delete", story_path(@story),
                           :data => {:confirm => "Are you sure?",
                                     :method => "delete"} %></p>
+
+<% if @story.sentences.any? %>
+  <h4>This is the story a sentence at a time:</h4>
+
+  <ul>
+    <% @story.sentences.each do |sentence| %>
+      <li>
+        <%= link_to sentence.text, edit_story_sentence_path(sentence) %> 
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no sentences yet!</p>
+<% end %>
+
+<%= link_to "Add a sentence", new_story_sentence_path(@story) %>
 <hr>
