@@ -1,3 +1,3 @@
 class Story < ActiveRecord::Base
-  validates :title, :image_url, :presence => true
+  validates :title, :presence => true
 end
