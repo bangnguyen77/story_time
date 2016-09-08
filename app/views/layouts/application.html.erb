@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <%= link_to_unless_current "Home", stories_path %>
     <%= yield %>
   </body>
 </html>
