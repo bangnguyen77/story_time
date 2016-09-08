@@ -5,3 +5,5 @@
   <li><%= link_to story.title, story_path(story) %> | <%= image_tag story.image_url %></li>
   <% end %>
 </ul>
+
+<%= link_to "New Story", new_story_path %>

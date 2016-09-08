@@ -10,6 +10,11 @@
 
   <body>
     <%= link_to_unless_current "Home", stories_path %>
+    <div class="">
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+    </div>
+
     <%= yield %>
   </body>
 </html>
