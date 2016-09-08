@@ -22,6 +22,21 @@ class StoriesController < ApplicationController
     end
   end
 
+  def edit
+    @story = Story.find(params[:id])
+  end
+
+  def update
+    @story =Story.find(params[:id])
+    if @story.update(story_params)
+      flash[:notice] = "Update saved successfully!"
+      redirect_to stories_path
+    else
+      flash[:alert] = "Update not saved. Try again!"
+      render :edit
+    end
+  end
+
   private
   def story_params
     params.require(:story).permit(:title, :image_url)
