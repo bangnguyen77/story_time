@@ -7,3 +7,9 @@
 </ul>
 
 <%= link_to "New Story", new_story_path %>
+
+<% @images = Dir.glob("app/assets/images/*.jpg") %>
+
+<% @images.each do |image_path| %>
+  <%= image_tag image_path.split('/').last %>
+<% end %>
